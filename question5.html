@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 5: Opinions politiques</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quelles sont les opinions politiques préférées de votre âme sœur ?</h1>
+        <button onclick="saveAnswer('political', 'Extreme-droite', 35)">Extrême-droite</button>
+        <button onclick="saveAnswer('political', 'Droite/Centre-Droit', 25)">Droite/Centre-Droit</button>
+        <button onclick="saveAnswer('political', 'Gauche/Centre Gauche', 15)">Gauche/Centre Gauche</button>
+        <button onclick="saveAnswer('political', 'Extrême Gauche', 10)">Extrême Gauche</button>
+        <button onclick="saveAnswer('political', 'Other', 5)">Autre</button>
+        <button onclick="saveAnswer('political', 'No preference', 100)">Peu importe</button>
+    </div>
+    <script>
+        function saveAnswer(question, answer, percentage) {
+            localStorage.setItem(question, JSON.stringify({answer: answer, percentage: percentage}));
+            window.location.href = 'question6.html';
+        }
+    </script>
+</body>
+</html>

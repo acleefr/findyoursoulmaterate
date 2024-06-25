@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 3: Revenu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quelle est la gamme de revenu préférée de votre âme sœur ?</h1>
+        <button onclick="saveAnswer('wage', 'Less than €20,000', 25)">Moins de €20,000</button>
+        <button onclick="saveAnswer('wage', '€20,000-€40,000', 57)">€20,000-€40,000</button>
+        <button onclick="saveAnswer('wage', '€40,000-€60,000', 11)">€40,000-€60,000</button>
+        <button onclick="saveAnswer('wage', '€60,000-€80,000', 4)">€60,000-€80,000</button>
+        <button onclick="saveAnswer('wage', 'More than €80,000', 3)">Plus de €80,000</button>
+        <button onclick="saveAnswer('wage', 'No preference', 100)">Peu importe</button>
+    </div>
+    <script>
+        function saveAnswer(question, answer, percentage) {
+            localStorage.setItem(question, JSON.stringify({answer: answer, percentage: percentage}));
+            window.location.href = 'question4.html';
+        }
+    </script>
+</body>
+</html>

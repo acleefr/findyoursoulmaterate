@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 6: Âge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quelle est la tranche d'âge préférée de votre âme sœur ?</h1>
+        <button onclick="saveAnswer('age', '18-25', 20)">18-25 ans</button>
+        <button onclick="saveAnswer('age', '26-35', 20)">26-35 ans</button>
+        <button onclick="saveAnswer('age', '36-45', 20)">36-45 ans</button>
+        <button onclick="saveAnswer('age', '46-55', 20)">46-55 ans</button>
+        <button onclick="saveAnswer('age', '56 and above', 20)">56 ans et plus</button>
+        <button onclick="saveAnswer('age', 'No preference', 100)">Peu importe</button>
+    </div>
+    <script>
+        function saveAnswer(question, answer, percentage) {
+            localStorage.setItem(question, JSON.stringify({answer: answer, percentage: percentage}));
+            window.location.href = 'question7.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question: Genre</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quel genre de personne recherchez-vous ?</h1>
+        <button onclick="saveAnswer('gender', 'Homme', 50)">Homme</button>
+        <button onclick="saveAnswer('gender', 'Femme', 50)">Femme</button>
+        <button onclick="saveAnswer('gender', 'No preference', 100)">Peu importe</button>
+    </div>
+    <script>
+        function saveAnswer(question, answer, percentage) {
+            localStorage.setItem(question, JSON.stringify({answer: answer, percentage: percentage}));
+            window.location.href = 'question1.html';
+        }
+    </script>
+</body>
+</html>

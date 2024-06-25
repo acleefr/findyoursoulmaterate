@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 7: Objectifs de relation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quels sont vos objectifs de relation avec votre âme sœur ?</h1>
+        <button onclick="saveAnswer('relationship', 'Casual dating', 20)">Rencontres occasionnelles</button>
+        <button onclick="saveAnswer('relationship', 'Serious relationship', 20)">Relation sérieuse</button>
+        <button onclick="saveAnswer('relationship', 'Marriage', 20)">Mariage</button>
+        <button onclick="saveAnswer('relationship', 'Long-term companionship', 20)">Compagnonnage à long terme</button>
+        <button onclick="saveAnswer('relationship', 'Not sure yet', 20)">Pas encore sûr</button>
+        <button onclick="saveAnswer('relationship', 'No preference', 100)">Peu importe</button>
+    </div>
+    <script>
+        function saveAnswer(question, answer, percentage) {
+            localStorage.setItem(question, JSON.stringify({answer: answer, percentage: percentage}));
+            window.location.href = 'results.html';
+        }
+    </script>
+</body>
+</html>

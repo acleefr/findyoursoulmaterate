@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .bonshommes {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 5px;
+            width: 180px;
+            margin: 0 auto;
+        }
+        .bonhomme {
+            width: 30px;
+            height: 30px;
+            background-color: grey;
+        }
+        .lit {
+            background-color: pink;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button-container button, .button-container a, .bmc-button-container {
+            display: block;
+            margin: 10px auto;
+            background-color: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            text-align: center;
+            text-decoration: none;
+        }
+        .button-container a.small-button {
+            width: 150px;
+            padding: 5px 10px;
+            font-size: 1em;
+        }
+        .button-container button:hover, .button-container a:hover, .bmc-button-container:hover {
+            background-color: #0b78e3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Voici combien d'âmes sœurs se trouvent en France pour vous</h1>
+        <div class="bonshommes" id="bonshommes"></div>
+        <p id="resultText"></p>
+        <div class="button-container">
+            <button onclick="startOver()">Recommencer</button>
+            <a class="small-button" href="sources.html">Voir les sources</a>
+        </div>
+        <div class="button-container">
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="acleefr" data-color="#FFDD00" data-emoji="🍺" data-font="Lato" data-text="Buy me a beer" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
+        </div>
+    </div>
+    <script>
+        function calculateResults() {
+            const questions = ['height', 'religion', 'wage', 'education', 'political', 'age', 'relationship'];
+            let totalPercentage = 100;
+
+            questions.forEach(question => {
+                const data = JSON.parse(localStorage.getItem(question));
+                if (data && data.percentage) {
+                    totalPercentage *= (data.percentage / 100);
+                }
+            });
+
+            totalPercentage = Math.round(totalPercentage * 100) / 100;
+            const bonshommes = document.getElementById('bonshommes');
+            const litCount = Math.round(totalPercentage / 100 * 60);
+
+            for (let i = 0; i < 60; i++) {
+                const div = document.createElement('div');
+                div.className = 'bonhomme';
+                if (i < litCount) {
+                    div.classList.add('lit');
+                }
+                bonshommes.appendChild(div);
+            }
+
+            document.getElementById('resultText').innerText = `Selon vos réponses, ${totalPercentage}% de la population française pourrait être votre âme sœur.`;
+        }
+
+        function startOver() {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+
+        window.onload = calculateResults;
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2: Religion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quelle est la religion préférée de votre âme sœur ?</h1>
+        <button onclick="saveAnswer('religion', 'No belief', 50)">Sans croyance</button>
+        <button onclick="saveAnswer('religion', 'Catholic', 25)">Catholique</button>
+        <button onclick="saveAnswer('religion', 'Islam', 10)">Islam</button>
+        <button onclick="saveAnswer('religion', 'Judaism', 5)">Judaïsme</button>
+        <button onclick="saveAnswer('religion', 'Other', 10)">Autre</button>
+        <button onclick="saveAnswer('religion', 'No preference', 100)">Peu importe</button>
+    </div>
+    <script>
+        function saveAnswer(question, answer, percentage) {
+            localStorage.setItem(question, JSON.stringify({answer: answer, percentage: percentage}));
+            window.location.href = 'question3.html';
+        }
+    </script>
+</body>
+</html>

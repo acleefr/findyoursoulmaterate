@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 4: Éducation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quel est le niveau d'éducation préféré de votre âme sœur ?</h1>
+        <button onclick="saveAnswer('education', 'Nothing', 25)">Aucun</button>
+        <button onclick="saveAnswer('education', 'High School', 40)">Lycée</button>
+        <button onclick="saveAnswer('education', 'BTS/BUT', 14)">BTS/BUT</button>
+        <button onclick="saveAnswer('education', 'License/bachelor', 10)">Licence/Bachelor</button>
+        <button onclick="saveAnswer('education', 'Master’s Degree ou PGE', 10)">Master’s Degree ou PGE</button>
+        <button onclick="saveAnswer('education', 'PhD, doctorat or higher', 1)">PhD, doctorat ou plus</button>
+        <button onclick="saveAnswer('education', 'No preference', 100)">Peu importe</button>
+    </div>
+    <script>
+        function saveAnswer(question, answer, percentage) {
+            localStorage.setItem(question, JSON.stringify({answer: answer, percentage: percentage}));
+            window.location.href = 'question5.html';
+        }
+    </script>
+</body>
+</html>

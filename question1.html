@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1: Taille</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quelle est la taille préférée de votre âme sœur ?</h1>
+        <button onclick="saveAnswer('height', 'Less than 160 cm', 3)">Moins de 160 cm</button>
+        <button onclick="saveAnswer('height', '160-170 cm', 22)">160-170 cm</button>
+        <button onclick="saveAnswer('height', '170-180 cm', 51)">170-180 cm</button>
+        <button onclick="saveAnswer('height', '180-190 cm', 21)">180-190 cm</button>
+        <button onclick="saveAnswer('height', 'More than 190 cm', 2)">Plus de 190 cm</button>
+        <button onclick="saveAnswer('height', 'No preference', 100)">Peu importe</button>
+    </div>
+    <script>
+        function saveAnswer(question, answer, percentage) {
+            localStorage.setItem(question, JSON.stringify({answer: answer, percentage: percentage}));
+            window.location.href = 'question2.html';
+        }
+    </script>
+</body>
+</html>
