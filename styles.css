@@ -13,11 +13,18 @@ body {
 
 .container {
     text-align: center;
+    padding: 0 20px; /* Add padding for better responsiveness */
 }
 
 h1 {
     margin-bottom: 20px;
     font-size: 1.5em;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.2em; /* Smaller font size for smaller screens */
+    }
 }
 
 button, a.button {
@@ -30,6 +37,7 @@ button, a.button {
     font-size: 1.2em;
     margin: 5px;
     text-decoration: none;
+    display: inline-block; /* Ensure buttons don't break onto new lines */
 }
 
 button:hover, a.button:hover {
@@ -37,7 +45,7 @@ button:hover, a.button:hover {
 }
 
 .small-button {
-    width: 150px;
+    width: auto; /* Ensure button width adjusts to content */
     padding: 5px 10px;
     font-size: 1em;
 }
@@ -55,4 +63,66 @@ button:hover, a.button:hover {
 
 .footer a:hover {
     text-decoration: underline;
+}
+
+.hearts {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px; /* Adjusted gap for spacing */
+    width: 180px; /* Adjusted width to accommodate gap */
+    margin: 0 auto;
+}
+
+.heart {
+    width: 20px; /* Reduced size for better fitting */
+    height: 20px; /* Reduced size for better fitting */
+    background-color: grey;
+    position: relative;
+    transform: rotate(-45deg);
+    margin: 3px; /* Added margin for spacing */
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    width: 20px; /* Reduced size for better fitting */
+    height: 20px; /* Reduced size for better fitting */
+    background-color: grey;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: 10px;
+    top: 0;
+}
+
+.lit {
+    background-color: pink;
+}
+
+.lit::before,
+.lit::after {
+    background-color: pink;
+}
+
+@media (max-width: 600px) {
+    .button-container button, .button-container a.button, .bmc-button-container {
+        font-size: 1em; /* Smaller font size for buttons on smaller screens */
+        padding: 8px 16px; /* Adjust padding for buttons on smaller screens */
+    }
+    .heart {
+        width: 15px; /* Further reduced size for smaller screens */
+        height: 15px; /* Further reduced size for smaller screens */
+    }
+    .heart::before,
+    .heart::after {
+        width: 15px; /* Further reduced size for smaller screens */
+        height: 15px; /* Further reduced size for smaller screens */
+    }
 }

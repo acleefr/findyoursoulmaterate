@@ -5,80 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultats</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .hearts {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px; /* Adjusted gap for spacing */
-            width: 220px; /* Adjusted width to accommodate gap */
-            margin: 0 auto;
-        }
-        .heart {
-            width: 30px;
-            height: 30px;
-            background-color: grey;
-            position: relative;
-            transform: rotate(-45deg);
-            margin: 5px; /* Added margin for spacing */
-        }
-        .heart::before,
-        .heart::after {
-            content: "";
-            width: 30px;
-            height: 30px;
-            background-color: grey;
-            border-radius: 50%;
-            position: absolute;
-        }
-        .heart::before {
-            top: -15px;
-            left: 0;
-        }
-        .heart::after {
-            left: 15px;
-            top: 0;
-        }
-        .lit {
-            background-color: pink;
-        }
-        .lit::before,
-        .lit::after {
-            background-color: pink;
-        }
-        .button-container {
-            margin-top: 20px;
-        }
-        .button-container button, .button-container a.button, .bmc-button-container {
-            display: block;
-            margin: 10px auto;
-            background-color: #1e90ff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em;
-            text-align: center;
-            text-decoration: none;
-        }
-        .button-container a.small-button {
-            width: 150px;
-            padding: 5px 10px;
-            font-size: 1em;
-        }
-        .button-container button:hover, .button-container a.button:hover, .bmc-button-container:hover {
-            background-color: #0b78e3;
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.2em; /* Smaller font size for smaller screens */
-            }
-            .button-container button, .button-container a.button, .bmc-button-container {
-                font-size: 1em; /* Smaller font size for buttons on smaller screens */
-                padding: 8px 16px; /* Adjust padding for buttons on smaller screens */
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -91,7 +17,7 @@
             <button onclick="shareOnTwitter()">Partager sur X (Twitter)</button>
             <a class="small-button button" href="sources.html">Voir les sources</a>
         </div>
-        <div class="button-container">
+        <div class="button-container" style="margin-top: 10px;"> <!-- Added margin-top to create space -->
             <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="acleefr" data-color="#FFDD00" data-emoji="🍺" data-font="Lato" data-text="Buy me a beer" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
         </div>
     </div>
@@ -138,7 +64,7 @@
         function shareOnTwitter() {
             const totalPercentage = document.getElementById('resultText').innerText.match(/[\d.]+/)[0];
             const peopleCount = document.getElementById('peopleCount').innerText.match(/[\d]+/)[0];
-            const tweetText = `Hey ! j'ai essayé soulmate et j'ai eu un résultat de ${totalPercentage}% ce qui fait ${peopleCount} Français(es) <3, essayez-le vous aussi ! soulmate.aclee.fr #frenchsoulmate`;
+            const tweetText = `Hey ! j'ai essayé soulmate et j'ai eu un résultat de ${totalPercentage}% ce qui fait ${peopleCount} personnes en France <3 essayez : soulmate.aclee.fr #frenchsoulmate`;
             const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
             window.open(tweetUrl, '_blank');
         }
