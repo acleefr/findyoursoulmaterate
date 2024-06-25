@@ -6,25 +6,49 @@
     <title>Résultats</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .bonshommes {
+        .hearts {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 5px;
-            width: 180px;
+            gap: 10px; /* Adjusted gap for spacing */
+            width: 220px; /* Adjusted width to accommodate gap */
             margin: 0 auto;
         }
-        .bonhomme {
+        .heart {
             width: 30px;
             height: 30px;
             background-color: grey;
+            position: relative;
+            transform: rotate(-45deg);
+            margin: 5px; /* Added margin for spacing */
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-color: grey;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -15px;
+            left: 0;
+        }
+        .heart::after {
+            left: 15px;
+            top: 0;
         }
         .lit {
+            background-color: pink;
+        }
+        .lit::before,
+        .lit::after {
             background-color: pink;
         }
         .button-container {
             margin-top: 20px;
         }
-        .button-container button, .button-container a, .bmc-button-container {
+        .button-container button, .button-container a.button, .bmc-button-container {
             display: block;
             margin: 10px auto;
             background-color: #1e90ff;
@@ -42,23 +66,38 @@
             padding: 5px 10px;
             font-size: 1em;
         }
-        .button-container button:hover, .button-container a:hover, .bmc-button-container:hover {
+        .button-container button:hover, .button-container a.button:hover, .bmc-button-container:hover {
             background-color: #0b78e3;
         }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.2em; /* Smaller font size for smaller screens */
+            }
+            .button-container button, .button-container a.button, .bmc-button-container {
+                font-size: 1em; /* Smaller font size for buttons on smaller screens */
+                padding: 8px 16px; /* Adjust padding for buttons on smaller screens */
+            }
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Voici combien d'âmes sœurs se trouvent en France pour vous</h1>
-        <div class="bonshommes" id="bonshommes"></div>
+        <div class="hearts" id="hearts"></div>
         <p id="resultText"></p>
+        <p id="peopleCount"></p>
         <div class="button-container">
             <button onclick="startOver()">Recommencer</button>
-            <a class="small-button" href="sources.html">Voir les sources</a>
+            <button onclick="shareOnTwitter()">Partager sur X (Twitter)</button>
+            <a class="small-button button" href="sources.html">Voir les sources</a>
         </div>
         <div class="button-container">
             <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="acleefr" data-color="#FFDD00" data-emoji="🍺" data-font="Lato" data-text="Buy me a beer" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
         </div>
+    </div>
+    <div class="footer">
+        <p>Creation from <a href="https://aclee.fr" target="_blank">aclee.fr</a></p>
     </div>
     <script>
         function calculateResults() {
@@ -72,25 +111,39 @@
                 }
             });
 
-            totalPercentage = Math.round(totalPercentage * 100) / 100;
-            const bonshommes = document.getElementById('bonshommes');
-            const litCount = Math.round(totalPercentage / 100 * 60);
+            totalPercentage = Math.round(totalPercentage * 1000000) / 1000000;
+            const populationFrance = 70000000; // 70 million people
+            const peopleCount = Math.round(totalPercentage / 100 * populationFrance);
+            const hearts = document.getElementById('hearts');
+            let litCount = Math.round(totalPercentage / 100 * 60);
+            if (litCount < 1) litCount = 1;
 
             for (let i = 0; i < 60; i++) {
                 const div = document.createElement('div');
-                div.className = 'bonhomme';
+                div.className = 'heart';
                 if (i < litCount) {
                     div.classList.add('lit');
                 }
-                bonshommes.appendChild(div);
+                hearts.appendChild(div);
             }
 
             document.getElementById('resultText').innerText = `Selon vos réponses, ${totalPercentage}% de la population française pourrait être votre âme sœur.`;
+            document.getElementById('peopleCount').innerText = `Cela représente environ ${peopleCount} personnes en France.`;
         }
 
         function startOver() {
             localStorage.clear();
             window.location.href = 'index.html';
+        }
+
+        function shareOnTwitter() {
+            html2canvas(document.body).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'resultat_ame_soeur.png';
+                link.click();
+                alert('Le résultat a été téléchargé. Vous pouvez maintenant le partager sur Twitter.');
+            });
         }
 
         window.onload = calculateResults;
