@@ -138,7 +138,7 @@
         function shareOnTwitter() {
             const totalPercentage = document.getElementById('resultText').innerText.match(/[\d.]+/)[0];
             const peopleCount = document.getElementById('peopleCount').innerText.match(/[\d]+/)[0];
-            const tweetText = `Hey ! j'ai essayé soulmate et j'ai eu un résultat de ${totalPercentage}% ce qui fait ${peopleCount} Français(es) <3, essayez-le vous aussi ! soulmate.aclee.fr`;
+            const tweetText = `Hey ! j'ai essayé soulmate et j'ai eu un résultat de ${totalPercentage}% ce qui fait ${peopleCount} Français(es) <3, essayez-le vous aussi ! soulmate.aclee.fr #frenchsoulmate`;
             const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
             window.open(tweetUrl, '_blank');
         }
